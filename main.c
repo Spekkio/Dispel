@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <io.h>
 
 #include "dispel.h"
 
@@ -270,7 +269,9 @@ int main(int argc, char *argv[])
 	}
 
 	// Read the file into memory
-	len = filelength(fileno(fin));
+	fseek(fin, 0L, SEEK_END);
+	len = ftell(fin);
+	fseek(fin, 0L, SEEK_SET);
 
 	// Make sure the image is big enough
 
